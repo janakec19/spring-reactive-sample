@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -41,8 +42,13 @@ class PostController {
     }
 
     @GetMapping("/{id}")
-    public Mono<Post> get(@PathVariable("id") Integer id) {
-        return this.posts.findById(id);
+    public Post get(@PathVariable("id") Integer id) {
+    	Mono<Post> mono= posts.findById(id);
+    	Post post=new Post();
+    	mono.subscribe(v -> {post.setContent(v.getContent());
+    	post.setTitle(v.getTitle());
+    	});
+        return post;
     }
 
     @PutMapping("/{id}")

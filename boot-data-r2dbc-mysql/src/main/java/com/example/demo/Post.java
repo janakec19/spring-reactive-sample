@@ -26,7 +26,36 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("posts")
 class Post {
     
-    @Id
+    public Integer getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", title=" + title + ", content=" + content + "]";
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	@Id
     @Column("id")
     private Integer id;
 

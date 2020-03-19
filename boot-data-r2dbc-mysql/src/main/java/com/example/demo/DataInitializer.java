@@ -29,7 +29,7 @@ class DataInitializer {
 
     @EventListener(value = ContextRefreshedEvent.class)
     public void init() {
-        log.info("start data initialization  ...");
+    	System.out.println("start data initialization  ...");
         this.databaseClient.insert()
                 .into("posts")
                 //.nullValue("id", Integer.class)
@@ -49,7 +49,7 @@ class DataInitializer {
                                 .all()
                                 .log()
                 )
-                .subscribe(null, null, () -> log.info("initialization is done..."));
+                .subscribe(null, null, () -> System.out.println("initialization is done..."));
     }
 
 }
